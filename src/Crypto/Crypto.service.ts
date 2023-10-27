@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Report } from 'src/DbRepository/Report/Report.entity';
+import { CoinApiHandler } from 'src/classes/CoinApiHandler/CoinApiHandler';
 import { Repository } from 'typeorm';
 import { v4 } from 'uuid';
 
@@ -15,7 +16,10 @@ export class CryptoService {
     entity.id = v4();
     entity.start_date = new Date();
     entity.end_date = new Date();
-    return this.reportRepository.insert(entity);
+    const coinApiHandler = new CoinApiHandler();
+    const data = await coinApiHandler.getCurrencyValue('BTC', 'PLN');
+    console.log(data);
+    return 1;
   }
   async findReportsInScope() {
     try {
