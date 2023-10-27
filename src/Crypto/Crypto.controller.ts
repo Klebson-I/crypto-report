@@ -7,6 +7,6 @@ export class CryptoController {
 
   @Post('/createData')
   async createReportsData() {
-    return this.cryptoService.findReportsInScope();
+    return this.cryptoService.createReportData();
   }
 }

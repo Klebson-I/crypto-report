@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Report } from './DbRepository/Report/Report.entity';
 import { CryptoController } from './Crypto/Crypto.controller';
 import { CryptoService } from './Crypto/Crypto.service';
+import { CryptoModule } from './Crypto/Crypto.module';
 
 @Module({
   imports: [
@@ -18,8 +19,9 @@ import { CryptoService } from './Crypto/Crypto.service';
       entities: [Report],
       synchronize: true,
     }),
+    CryptoModule,
   ],
-  controllers: [AppController, CryptoController],
-  providers: [AppService, CryptoService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
