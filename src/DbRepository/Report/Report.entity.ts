@@ -6,8 +6,5 @@ export class Report {
   id: string;
 
   @Column()
-  start_date: Date;
-
-  @Column()
-  end_date: Date;
+  creation_date: Date;
 }

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { ApiCoinResponse } from './types';
 export class CoinApiHandler {
   private apiKey = '1298CD37-D119-4CEA-8F69-51CF2BD92E4D';
   private url = 'https://rest.coinapi.io/v1/exchangerate/';
@@ -15,7 +16,7 @@ export class CoinApiHandler {
       url: this.url,
       method: 'GET',
       headers: this.headers,
-    })) as unknown as { data: any };
+    })) as unknown as { data: ApiCoinResponse };
     const { data } = res;
     return data;
   }
