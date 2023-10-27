@@ -3,9 +3,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Report } from './DbRepository/Report/Report.entity';
-import { CryptoController } from './Crypto/Crypto.controller';
-import { CryptoService } from './Crypto/Crypto.service';
 import { CryptoModule } from './Crypto/Crypto.module';
+import { ReportCurrency } from './DbRepository/ReportCurrency/ReportCurrency.entity';
 
 @Module({
   imports: [
@@ -16,7 +15,7 @@ import { CryptoModule } from './Crypto/Crypto.module';
       username: 'root',
       password: '',
       database: 'crypto_report',
-      entities: [Report],
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
     CryptoModule,
