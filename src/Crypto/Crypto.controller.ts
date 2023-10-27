@@ -6,5 +6,7 @@ export class CryptoController {
   constructor(private cryptoService: CryptoService) {}
 
   @Post('/createData')
-  async createReportsData() {}
+  async createReportsData() {
+    return this.cryptoService.createReportData();
+  }
 }
