@@ -20,7 +20,6 @@ export class CryptoService {
       this.reportRepository,
     );
     const reportId = await reportRepositoryHandler.createReportEntity();
-    console.log(reportId);
     const cryptoData = await getCurrencyData([
       {
         currency: 'BTC',

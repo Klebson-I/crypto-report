@@ -1,7 +1,6 @@
 import { ReportCurrency } from 'src/DbRepository/ReportCurrency/ReportCurrency.entity';
 import { Repository } from 'typeorm';
 import { ApiCoinResponse } from '../CoinApiHandler/types';
-import { v4 } from 'uuid';
 
 export class ReportCurrencyRepositoryHandler {
   constructor(private repository: Repository<ReportCurrency>) {}
@@ -18,8 +17,9 @@ export class ReportCurrencyRepositoryHandler {
       entity.asset_id_quote = asset_id_quote;
       entity.rate = rate;
       entity.report_id = reportId;
-      entity.id = v4();
-      const { raw: insertId } = await this.repository.insert(entity);
+      const {
+        raw: { insertId },
+      } = await this.repository.insert(entity);
       insertedIds.push(insertId);
     }
     return insertedIds;
