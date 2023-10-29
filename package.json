@@ -26,6 +26,7 @@
     "@nestjs/typeorm": "^10.0.0",
     "@types/uuid": "^9.0.6",
     "axios": "^1.6.0",
+    "csv": "^6.3.5",
     "mysql2": "^3.6.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1",
