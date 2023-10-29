@@ -1,25 +1,40 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Report } from 'src/DbRepository/Report/Report.entity';
-import { CoinApiHandler } from 'src/classes/CoinApiHandler/CoinApiHandler';
 import { Repository } from 'typeorm';
-import { v4 } from 'uuid';
+import { getCurrencyData } from './utils';
+import { ReportCurrency } from 'src/DbRepository/ReportCurrency/ReportCurrency.entity';
+import { ReportRepositoryHandler } from 'src/classes/ReportRepository/ReportRepository';
+import { ReportCurrencyRepositoryHandler } from 'src/classes/ReportCurrency/ReportCurrencyHandler';
 
 @Injectable()
 export class CryptoService {
   constructor(
     @InjectRepository(Report)
     private reportRepository: Repository<Report>,
+    @InjectRepository(ReportCurrency)
+    private currencyRepository: Repository<ReportCurrency>,
   ) {}
   async createReportData() {
-    const entity = new Report();
-    entity.id = v4();
-    entity.start_date = new Date();
-    entity.end_date = new Date();
-    const coinApiHandler = new CoinApiHandler();
-    const data = await coinApiHandler.getCurrencyValue('BTC', 'PLN');
-    console.log(data);
-    return 1;
+    const reportRepositoryHandler = new ReportRepositoryHandler(
+      this.reportRepository,
+    );
+    const reportId = await reportRepositoryHandler.createReportEntity();
+    const cryptoData = await getCurrencyData([
+      {
+        currency: 'BTC',
+        priceCurrency: 'PLN',
+      },
+    ]);
+    const currencyRepositoryHandler = new ReportCurrencyRepositoryHandler(
+      this.currencyRepository,
+    );
+    const insertedIds =
+      await currencyRepositoryHandler.createCurrenciesToReport(
+        reportId,
+        cryptoData,
+      );
+    return insertedIds;
   }
   async findReportsInScope() {
     try {

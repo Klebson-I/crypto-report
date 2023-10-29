@@ -2,12 +2,9 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'report' })
 export class Report {
-  @PrimaryGeneratedColumn()
-  id: string;
+  @PrimaryGeneratedColumn('increment')
+  id: number;
 
   @Column()
-  start_date: Date;
-
-  @Column()
-  end_date: Date;
+  creation_date: Date;
 }
