@@ -13,4 +13,7 @@ export class ReportCurrency {
 
   @Column()
   rate: number;
+
+  @Column()
+  report_id: number;
 }

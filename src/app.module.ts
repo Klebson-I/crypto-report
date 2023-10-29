@@ -2,8 +2,8 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Report } from './DbRepository/Report/Report.entity';
 import { CryptoModule } from './Crypto/Crypto.module';
+import { Report } from './DbRepository/Report/Report.entity';
 import { ReportCurrency } from './DbRepository/ReportCurrency/ReportCurrency.entity';
 
 @Module({
@@ -15,7 +15,7 @@ import { ReportCurrency } from './DbRepository/ReportCurrency/ReportCurrency.ent
       username: 'root',
       password: '',
       database: 'crypto_report',
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      entities: [Report, ReportCurrency],
       synchronize: true,
     }),
     CryptoModule,

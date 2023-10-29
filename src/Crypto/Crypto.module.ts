@@ -9,6 +9,5 @@ import { ReportCurrency } from 'src/DbRepository/ReportCurrency/ReportCurrency.e
   imports: [TypeOrmModule.forFeature([Report, ReportCurrency])],
   providers: [CryptoService],
   controllers: [CryptoController],
-  exports: [CryptoService],
 })
 export class CryptoModule {}
