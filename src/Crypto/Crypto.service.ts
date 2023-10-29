@@ -6,6 +6,7 @@ import { getCurrencyData } from './utils';
 import { ReportCurrency } from 'src/DbRepository/ReportCurrency/ReportCurrency.entity';
 import { ReportRepositoryHandler } from 'src/classes/ReportRepository/ReportRepository';
 import { ReportCurrencyRepositoryHandler } from 'src/classes/ReportCurrency/ReportCurrencyHandler';
+import { GetCurrencyDataInput } from './types';
 
 @Injectable()
 export class CryptoService {
@@ -15,17 +16,12 @@ export class CryptoService {
     @InjectRepository(ReportCurrency)
     private currencyRepository: Repository<ReportCurrency>,
   ) {}
-  async createReportData() {
+  async createReportData(currencies: GetCurrencyDataInput) {
     const reportRepositoryHandler = new ReportRepositoryHandler(
       this.reportRepository,
     );
     const reportId = await reportRepositoryHandler.createReportEntity();
-    const cryptoData = await getCurrencyData([
-      {
-        currency: 'BTC',
-        priceCurrency: 'PLN',
-      },
-    ]);
+    const cryptoData = await getCurrencyData(currencies);
     const currencyRepositoryHandler = new ReportCurrencyRepositoryHandler(
       this.currencyRepository,
     );

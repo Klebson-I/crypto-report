@@ -1,12 +1,17 @@
-import { Controller, Post } from '@nestjs/common';
+import { Controller, Post, UsePipes, Body } from '@nestjs/common';
 import { CryptoService } from './Crypto.service';
+import { CurrencyArrayValidationPipe } from 'src/pipes/CreateCurrencyValidationPipe.pipe';
+import { GetCurrencyDataInput } from './types';
 
 @Controller('crypto')
 export class CryptoController {
   constructor(private cryptoService: CryptoService) {}
 
   @Post('/createData')
-  async createReportsData() {
-    return this.cryptoService.createReportData();
+  @UsePipes(new CurrencyArrayValidationPipe())
+  async createReportsData(
+    @Body('currencies') currencies: GetCurrencyDataInput,
+  ) {
+    return this.cryptoService.createReportData(currencies);
   }
 }
