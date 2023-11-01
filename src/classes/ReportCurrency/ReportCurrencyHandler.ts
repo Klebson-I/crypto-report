@@ -22,7 +22,6 @@ export class ReportCurrencyRepositoryHandler {
       } = await this.repository.insert(entity);
       insertedIds.push(insertId);
     }
-    console.log(insertedIds);
     return insertedIds;
   }
 }
