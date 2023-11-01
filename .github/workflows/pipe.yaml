@@ -1,8 +1,8 @@
 name: CI
 on:
-  workflow_dispatch:
+  workflow_dispatch
 jobs:
-  build_and_test:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -11,3 +11,5 @@ jobs:
           node-version: '18.x'
       - name: Installing dependencies
         run: npm install
+      - name: Run tests
+        run: npm run test
