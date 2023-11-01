@@ -1,7 +1,5 @@
 name: CI
-on:
-  commit:
-    branches: [master]
+
 jobs:
   build_and_test:
     runs-on: ubuntu-latest
