@@ -32,11 +32,6 @@ export class CryptoService {
       );
     return insertedIds;
   }
-  async findReportsInScope() {
-    try {
-      return this.reportRepository.find();
-    } catch (e) {
-      console.log(e);
-    }
-  }
+  async createCurrencyReport() {}
+  async deleteCurrencyReport() {}
 }
