@@ -1,6 +1,6 @@
 import { Controller, Post, UsePipes, Body } from '@nestjs/common';
 import { CryptoService } from './Crypto.service';
-import { CurrencyArrayValidationPipe } from 'src/pipes/CreateCurrencyValidationPipe.pipe';
+import { CurrencyArrayValidationPipe } from '../pipes/CreateCurrencyValidationPipe.pipe';
 import { GetCurrencyDataInput } from './types';
 
 @Controller('crypto')

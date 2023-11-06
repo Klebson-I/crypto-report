@@ -1,4 +1,4 @@
-import { Report } from 'src/DbRepository/Report/Report.entity';
+import { Report } from '../../DbRepository/Report/Report.entity';
 import { Repository } from 'typeorm';
 
 export class ReportRepositoryHandler {
