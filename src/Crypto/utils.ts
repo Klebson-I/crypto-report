@@ -1,4 +1,4 @@
-import { CoinApiHandler } from 'src/classes/CoinApiHandler/CoinApiHandler';
+import { CoinApiHandler } from '../classes/CoinApiHandler/CoinApiHandler';
 import { GetCurrencyDataInput } from './types';
 
 export const getCurrencyData = async (currencies: GetCurrencyDataInput) => {

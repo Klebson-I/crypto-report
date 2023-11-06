@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Report } from 'src/DbRepository/Report/Report.entity';
+import { Report } from '../DbRepository/Report/Report.entity';
 import { Repository } from 'typeorm';
 import { getCurrencyData } from './utils';
-import { ReportCurrency } from 'src/DbRepository/ReportCurrency/ReportCurrency.entity';
-import { ReportRepositoryHandler } from 'src/classes/ReportRepository/ReportRepository';
-import { ReportCurrencyRepositoryHandler } from 'src/classes/ReportCurrency/ReportCurrencyHandler';
+import { ReportCurrency } from '../DbRepository/ReportCurrency/ReportCurrency.entity';
+import { ReportRepositoryHandler } from '../classes/ReportRepositoryHandler/ReportRepositoryHandler';
+import { ReportCurrencyRepositoryHandler } from '../classes/ReportCurrencyHandler/ReportCurrencyHandler';
 import { GetCurrencyDataInput } from './types';
 
 @Injectable()
@@ -32,11 +32,6 @@ export class CryptoService {
       );
     return insertedIds;
   }
-  async findReportsInScope() {
-    try {
-      return this.reportRepository.find();
-    } catch (e) {
-      console.log(e);
-    }
-  }
+  async createCurrencyReport() {}
+  async deleteCurrencyReport() {}
 }

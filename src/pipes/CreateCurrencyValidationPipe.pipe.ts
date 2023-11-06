@@ -10,9 +10,7 @@ export class CurrencyArrayValidationPipe implements PipeTransform {
     }
 
     const isSomeDataInvalid = value.some(
-      (currency) =>
-        typeof currency?.currency !== 'string' ||
-        typeof currency?.priceCurrency !== 'string',
+      (currency) => !currency?.currency || !currency?.priceCurrency,
     );
 
     if (isSomeDataInvalid) {

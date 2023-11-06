@@ -1,4 +1,4 @@
-import { ReportCurrency } from 'src/DbRepository/ReportCurrency/ReportCurrency.entity';
+import { ReportCurrency } from '../../DbRepository/ReportCurrency/ReportCurrency.entity';
 import { Repository } from 'typeorm';
 import { ApiCoinResponse } from '../CoinApiHandler/types';
 
