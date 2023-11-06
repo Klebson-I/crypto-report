@@ -14,4 +14,9 @@ export class CryptoController {
   ) {
     return this.cryptoService.createReportData(currencies);
   }
+
+  @Post('/report')
+  async createCurrencyReport() {
+    return this.cryptoService.createCurrencyReport();
+  }
 }
