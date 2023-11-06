@@ -1,4 +1,4 @@
-import { Controller, Post, UsePipes, Body } from '@nestjs/common';
+import { Controller, Post, UsePipes, Body, Get, Delete } from '@nestjs/common';
 import { CryptoService } from './Crypto.service';
 import { CurrencyArrayValidationPipe } from '../pipes/CreateCurrencyValidationPipe.pipe';
 import { GetCurrencyDataInput } from './types';
@@ -7,7 +7,7 @@ import { GetCurrencyDataInput } from './types';
 export class CryptoController {
   constructor(private cryptoService: CryptoService) {}
 
-  @Post('/createData')
+  @Post('/')
   @UsePipes(new CurrencyArrayValidationPipe())
   async createReportsData(
     @Body('currencies') currencies: GetCurrencyDataInput,
@@ -15,8 +15,13 @@ export class CryptoController {
     return this.cryptoService.createReportData(currencies);
   }
 
-  @Post('/report')
+  @Get('/:currencies')
   async createCurrencyReport() {
     return this.cryptoService.createCurrencyReport();
+  }
+
+  @Delete('/:path')
+  async deleteCurrencyReport() {
+    return this.cryptoService.deleteCurrencyReport();
   }
 }
