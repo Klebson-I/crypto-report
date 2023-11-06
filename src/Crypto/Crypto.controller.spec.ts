@@ -28,6 +28,7 @@ jest.mock('../classes/ReportRepositoryHandler/ReportRepositoryHandler', () => ({
 describe('Crypto controller', () => {
   let cryptoController: CryptoController;
   let cryptoService: CryptoService;
+  let cryptoServiceCreateDataSpy;
 
   const reportRepository = {
     find: jest.fn(),
@@ -51,12 +52,14 @@ describe('Crypto controller', () => {
 
     cryptoController = app.get<CryptoController>(CryptoController);
     cryptoService = app.get<CryptoService>(CryptoService);
+    cryptoServiceCreateDataSpy = jest.spyOn(cryptoService, 'createReportData');
   });
 
   describe('root', () => {
     it('Should return array of inserted ids returned from ReportCurrencyRepositoryHandler class', async () => {
       const result = await cryptoController.createReportsData([]);
       expect(result).toEqual(['1', '2']);
+      expect(cryptoServiceCreateDataSpy).toHaveBeenCalled();
     });
   });
 });
