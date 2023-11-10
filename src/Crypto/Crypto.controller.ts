@@ -10,6 +10,8 @@ import {
 import { CryptoService } from './Crypto.service';
 import { CurrencyArrayValidationPipe } from '../pipes/CreateCurrencyValidationPipe.pipe';
 import { GetCurrencyDataInput } from './types';
+import { DateTransformPipe } from 'src/pipes/DateTransformPipe';
+import { CryptoParamValidationPipe } from 'src/pipes/CryptoParamValidationPipe';
 
 @Controller('crypto')
 export class CryptoController {
@@ -25,9 +27,9 @@ export class CryptoController {
 
   @Get('/:currencies')
   async createCurrencyReport(
-    @Body('startDate') startDate: Date,
-    @Body('endDate') endDate: Date,
-    @Param('currencies') currencies: string[],
+    @Body('startDate', new DateTransformPipe()) startDate: Date,
+    @Body('endDate', new DateTransformPipe()) endDate: Date,
+    @Param('currencies', new CryptoParamValidationPipe()) currencies: string[],
   ) {
     return this.cryptoService.createCurrencyReport(
       startDate,
