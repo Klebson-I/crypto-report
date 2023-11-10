@@ -16,8 +16,11 @@ export class CryptoController {
   }
 
   @Get('/:currencies')
-  async createCurrencyReport() {
-    return this.cryptoService.createCurrencyReport();
+  async createCurrencyReport(
+    @Body('startDate') startDate: Date,
+    @Body('endDate') endDate: Date,
+  ) {
+    return this.cryptoService.createCurrencyReport(startDate, endDate);
   }
 
   @Delete('/:path')

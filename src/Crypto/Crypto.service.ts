@@ -7,6 +7,7 @@ import { ReportCurrency } from '../DbRepository/ReportCurrency/ReportCurrency.en
 import { ReportRepositoryHandler } from '../classes/ReportRepositoryHandler/ReportRepositoryHandler';
 import { ReportCurrencyRepositoryHandler } from '../classes/ReportCurrencyHandler/ReportCurrencyHandler';
 import { GetCurrencyDataInput } from './types';
+import { ReportJoiner } from 'src/classes/ReportJoiner/ReportJoiner';
 
 @Injectable()
 export class CryptoService {
@@ -32,6 +33,12 @@ export class CryptoService {
       );
     return insertedIds;
   }
-  async createCurrencyReport() {}
+  async createCurrencyReport(startDate: Date, endDate: Date) {
+    await ReportJoiner.getDataFromScope(
+      this.reportRepository,
+      startDate,
+      endDate,
+    );
+  }
   async deleteCurrencyReport() {}
 }
