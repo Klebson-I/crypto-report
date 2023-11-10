@@ -10,7 +10,6 @@ export class DateTransformPipe implements PipeTransform {
           'Invalid date format, must be year-month-day',
         );
       }
-      console.log(date);
       return date;
     } catch (e) {
       throw new BadRequestException(

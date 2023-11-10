@@ -38,8 +38,7 @@ export class CryptoService {
     endDate: Date,
     currencies: string[],
   ) {
-    console.log(currencies);
-    await ReportJoiner.getDataFromScope(
+    const currenciesData = await ReportJoiner.getDataFromScope(
       this.reportRepository,
       startDate,
       endDate,
