@@ -33,11 +33,16 @@ export class CryptoService {
       );
     return insertedIds;
   }
-  async createCurrencyReport(startDate: Date, endDate: Date) {
+  async createCurrencyReport(
+    startDate: Date,
+    endDate: Date,
+    currencies: string[],
+  ) {
     await ReportJoiner.getDataFromScope(
       this.reportRepository,
       startDate,
       endDate,
+      currencies,
     );
   }
   async deleteCurrencyReport() {}
