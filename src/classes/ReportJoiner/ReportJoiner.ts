@@ -13,6 +13,7 @@ export class ReportJoiner {
     const query = `
     SELECT
       report_currency.report_id,
+      report.creation_date,
       report_currency.asset_id_base,
       report_currency.rate,
       report_currency.asset_id_quote

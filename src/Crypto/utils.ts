@@ -1,3 +1,4 @@
+import { JoinCurrencyDto } from 'src/classes/ReportJoiner/types';
 import { CoinApiHandler } from '../classes/CoinApiHandler/CoinApiHandler';
 import { GetCurrencyDataInput } from './types';
 
@@ -8,4 +9,8 @@ export const getCurrencyData = async (currencies: GetCurrencyDataInput) => {
   );
   const data = await Promise.all(promiseArray);
   return data;
+};
+
+export const getCurrenciesStatisticInformation = (data: JoinCurrencyDto[]) => {
+  console.log(data);
 };

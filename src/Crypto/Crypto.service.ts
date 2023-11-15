@@ -8,6 +8,7 @@ import { ReportRepositoryHandler } from '../classes/ReportRepositoryHandler/Repo
 import { ReportCurrencyRepositoryHandler } from '../classes/ReportCurrencyHandler/ReportCurrencyHandler';
 import { GetCurrencyDataInput } from './types';
 import { ReportJoiner } from 'src/classes/ReportJoiner/ReportJoiner';
+import { CsvGenerator } from 'src/classes/CsvGenerator/CsvGenerator';
 
 @Injectable()
 export class CryptoService {
@@ -44,6 +45,8 @@ export class CryptoService {
       endDate,
       currencies,
     );
+    const csvGenerator = new CsvGenerator(currenciesData);
+    const reportFilePath = await csvGenerator.createStandardReport();
   }
   async deleteCurrencyReport() {}
 }
