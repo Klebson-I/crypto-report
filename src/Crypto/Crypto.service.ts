@@ -7,8 +7,8 @@ import { ReportCurrency } from '../DbRepository/ReportCurrency/ReportCurrency.en
 import { ReportRepositoryHandler } from '../classes/ReportRepositoryHandler/ReportRepositoryHandler';
 import { ReportCurrencyRepositoryHandler } from '../classes/ReportCurrencyHandler/ReportCurrencyHandler';
 import { GetCurrencyDataInput } from './types';
-import { ReportJoiner } from 'src/classes/ReportJoiner/ReportJoiner';
-import { CsvGenerator } from 'src/classes/CsvGenerator/CsvGenerator';
+import { ReportJoiner } from '../classes/ReportJoiner/ReportJoiner';
+import { CsvGenerator } from '../classes/CsvGenerator/CsvGenerator';
 import { createReadStream } from 'fs';
 
 @Injectable()

@@ -1,4 +1,4 @@
-import { JoinCurrencyDto } from 'src/classes/ReportJoiner/types';
+import { JoinCurrencyDto } from '../classes/ReportJoiner/types';
 import { CoinApiHandler } from '../classes/CoinApiHandler/CoinApiHandler';
 import { GetCurrencyDataInput } from './types';
 

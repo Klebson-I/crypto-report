@@ -10,8 +10,8 @@ import {
 import { CryptoService } from './Crypto.service';
 import { CurrencyArrayValidationPipe } from '../pipes/CreateCurrencyValidationPipe.pipe';
 import { GetCurrencyDataInput } from './types';
-import { DateTransformPipe } from 'src/pipes/DateTransformPipe';
-import { CryptoParamValidationPipe } from 'src/pipes/CryptoParamValidationPipe';
+import { DateTransformPipe } from '../pipes/DateTransformPipe';
+import { CryptoParamValidationPipe } from '../pipes/CryptoParamValidationPipe';
 
 @Controller('crypto')
 export class CryptoController {
