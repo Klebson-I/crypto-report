@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, StreamableFile } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Report } from '../DbRepository/Report/Report.entity';
 import { Repository } from 'typeorm';
@@ -9,6 +9,7 @@ import { ReportCurrencyRepositoryHandler } from '../classes/ReportCurrencyHandle
 import { GetCurrencyDataInput } from './types';
 import { ReportJoiner } from 'src/classes/ReportJoiner/ReportJoiner';
 import { CsvGenerator } from 'src/classes/CsvGenerator/CsvGenerator';
+import { createReadStream } from 'fs';
 
 @Injectable()
 export class CryptoService {
@@ -47,6 +48,8 @@ export class CryptoService {
     );
     const csvGenerator = new CsvGenerator(currenciesData);
     const reportFilePath = await csvGenerator.createStandardReport();
+    const stream = createReadStream(reportFilePath);
+    return new StreamableFile(stream);
   }
   async deleteCurrencyReport() {}
 }
