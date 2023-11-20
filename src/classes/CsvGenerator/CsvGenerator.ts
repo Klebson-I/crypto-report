@@ -2,7 +2,7 @@ import { join } from 'path';
 import { JoinCurrencyDto } from '../ReportJoiner/types';
 import { createArrayCsvWriter } from 'csv-writer';
 import { v4 } from 'uuid';
-import { StatisticCurrencyObject } from 'src/Crypto/types';
+import { StatisticCurrencyObject } from '../../Crypto/types';
 
 export class CsvGenerator {
   constructor(private data: JoinCurrencyDto[] | StatisticCurrencyObject) {}
