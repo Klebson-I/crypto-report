@@ -38,6 +38,19 @@ export class CryptoController {
     );
   }
 
+  @Get('/statistic/:currencies')
+  async createStatisticCurrencyReport(
+    @Body('startDate', new DateTransformPipe()) startDate: Date,
+    @Body('endDate', new DateTransformPipe()) endDate: Date,
+    @Param('currencies', new CryptoParamValidationPipe()) currencies: string[],
+  ) {
+    return this.cryptoService.createStatisticCurrencyReport(
+      startDate,
+      endDate,
+      currencies,
+    );
+  }
+
   @Delete('/:path')
   async deleteCurrencyReport() {
     return this.cryptoService.deleteCurrencyReport();
