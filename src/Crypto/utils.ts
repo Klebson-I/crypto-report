@@ -1,6 +1,6 @@
 import { JoinCurrencyDto } from '../classes/ReportJoiner/types';
 import { CoinApiHandler } from '../classes/CoinApiHandler/CoinApiHandler';
-import { GetCurrencyDataInput } from './types';
+import { GetCurrencyDataInput, StatisticCurrencyObject } from './types';
 
 export const getCurrencyData = async (currencies: GetCurrencyDataInput) => {
   const coinApiHandler = new CoinApiHandler();
@@ -32,7 +32,9 @@ const getMinValue = (reports: JoinCurrencyDto[]): number => {
   return min;
 };
 
-export const getCurrenciesStatisticInformation = (data: JoinCurrencyDto[]) => {
+export const getCurrenciesStatisticInformation = (
+  data: JoinCurrencyDto[],
+): StatisticCurrencyObject => {
   const specificCurrenciesInformation = data.reduce((acc, curr, _, arr) => {
     const { asset_id_base: actualIdBase } = curr;
 
@@ -49,7 +51,7 @@ export const getCurrenciesStatisticInformation = (data: JoinCurrencyDto[]) => {
     const minValue = getMinValue(allReportsInType);
 
     acc[actualIdBase] = {
-      averagePrive: avgValue,
+      averagePrice: avgValue,
       maxPrice: maxValue,
       minPrice: minValue,
     };

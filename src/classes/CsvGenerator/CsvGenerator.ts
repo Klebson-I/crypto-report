@@ -2,9 +2,10 @@ import { join } from 'path';
 import { JoinCurrencyDto } from '../ReportJoiner/types';
 import { createArrayCsvWriter } from 'csv-writer';
 import { v4 } from 'uuid';
+import { StatisticCurrencyObject } from 'src/Crypto/types';
 
 export class CsvGenerator {
-  constructor(private data: JoinCurrencyDto[]) {}
+  constructor(private data: JoinCurrencyDto[] | StatisticCurrencyObject) {}
 
   async createStandardReport(): Promise<string> {
     if (!Array.isArray(this.data)) {
@@ -23,5 +24,9 @@ export class CsvGenerator {
     const records = [titles, ...recordsValues];
     await csvWriter.writeRecords(records);
     return path;
+  }
+
+  async createStatisticReport(): Promise<string> {
+    return '';
   }
 }

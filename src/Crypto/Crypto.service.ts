@@ -66,7 +66,10 @@ export class CryptoService {
       currencies,
     );
     const statisticData = getCurrenciesStatisticInformation(currenciesData);
-    console.log(statisticData);
+    const csvGenerator = new CsvGenerator(statisticData);
+    const reportFilePath = await csvGenerator.createStatisticReport();
+    const stream = createReadStream(reportFilePath);
+    return new StreamableFile(stream);
   }
 
   async deleteCurrencyReport() {}
