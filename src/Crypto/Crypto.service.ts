@@ -2,7 +2,7 @@ import { Injectable, StreamableFile } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Report } from '../DbRepository/Report/Report.entity';
 import { Repository } from 'typeorm';
-import { getCurrencyData } from './utils';
+import { getCurrenciesStatisticInformation, getCurrencyData } from './utils';
 import { ReportCurrency } from '../DbRepository/ReportCurrency/ReportCurrency.entity';
 import { ReportRepositoryHandler } from '../classes/ReportRepositoryHandler/ReportRepositoryHandler';
 import { ReportCurrencyRepositoryHandler } from '../classes/ReportCurrencyHandler/ReportCurrencyHandler';
@@ -19,6 +19,7 @@ export class CryptoService {
     @InjectRepository(ReportCurrency)
     private currencyRepository: Repository<ReportCurrency>,
   ) {}
+
   async createReportData(currencies: GetCurrencyDataInput) {
     const reportRepositoryHandler = new ReportRepositoryHandler(
       this.reportRepository,
@@ -35,6 +36,7 @@ export class CryptoService {
       );
     return insertedIds;
   }
+
   async createCurrencyReport(
     startDate: Date,
     endDate: Date,
@@ -51,5 +53,24 @@ export class CryptoService {
     const stream = createReadStream(reportFilePath);
     return new StreamableFile(stream);
   }
+
+  async createStatisticCurrencyReport(
+    startDate: Date,
+    endDate: Date,
+    currencies: string[],
+  ) {
+    const currenciesData = await ReportJoiner.getDataFromScope(
+      this.reportRepository,
+      startDate,
+      endDate,
+      currencies,
+    );
+    const statisticData = getCurrenciesStatisticInformation(currenciesData);
+    const csvGenerator = new CsvGenerator(statisticData);
+    const reportFilePath = await csvGenerator.createStatisticReport();
+    const stream = createReadStream(reportFilePath);
+    return new StreamableFile(stream);
+  }
+
   async deleteCurrencyReport() {}
 }
