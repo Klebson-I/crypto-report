@@ -31,9 +31,22 @@ const mockJoinData = [
   },
 ];
 
+const expectObject = {
+  BTC: {
+    averagePrice: 7.5,
+    maxPrice: 10,
+    minPrice: 5,
+  },
+  ETH: {
+    averagePrice: 56,
+    maxPrice: 100,
+    minPrice: 12,
+  },
+};
+
 describe('Test getCurrenciesStatisticInformation function', () => {
   it('Should', () => {
     const obj = getCurrenciesStatisticInformation(mockJoinData);
-    expect(obj).toEqual({});
+    expect(obj).toEqual(expectObject);
   });
 });
