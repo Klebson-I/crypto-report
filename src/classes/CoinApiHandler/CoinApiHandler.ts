@@ -11,9 +11,9 @@ export class CoinApiHandler {
     };
   }
   async getCurrencyValue(crypto: string, priceCurrency: string) {
-    this.url += `${crypto}/${priceCurrency}`;
+    const url = `${this.url}${crypto}/${priceCurrency}`;
     const res = (await axios({
-      url: this.url,
+      url,
       method: 'GET',
       headers: this.headers,
     })) as unknown as { data: ApiCoinResponse };
