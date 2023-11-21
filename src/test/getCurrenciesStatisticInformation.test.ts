@@ -45,8 +45,12 @@ const expectObject = {
 };
 
 describe('Test getCurrenciesStatisticInformation function', () => {
-  it('Should', () => {
+  it('Should return proper statistic object', () => {
     const obj = getCurrenciesStatisticInformation(mockJoinData);
     expect(obj).toEqual(expectObject);
+  });
+  it('Should throw error when input is empty array or object', () => {
+    const call = () => getCurrenciesStatisticInformation({} as []);
+    expect(call).toThrow();
   });
 });

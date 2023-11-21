@@ -35,6 +35,9 @@ const getMinValue = (reports: JoinCurrencyDto[]): number => {
 export const getCurrenciesStatisticInformation = (
   data: JoinCurrencyDto[],
 ): StatisticCurrencyObject => {
+  if (!Array.isArray(data) || !data.length) {
+    throw new Error();
+  }
   const specificCurrenciesInformation = data.reduce((acc, curr, _, arr) => {
     const { asset_id_base: actualIdBase } = curr;
 
